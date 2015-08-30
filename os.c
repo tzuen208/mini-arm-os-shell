@@ -149,7 +149,7 @@ int find_cmd( char* cmd, int i ){
 		thread_create(test2, (void *) str1);
 		return 1;
 	}
-	else if( strncmp(c, "gcd", 3) == 0&& i == 3	){
+	else if( strncmp(c, "gcd", 3) == 0	){
 		char *para2 = strtok(NULL, delim);
 		//print_str(para);
 		//print_str(para2);
@@ -163,7 +163,7 @@ int find_cmd( char* cmd, int i ){
 		thread_create_int(fib, f);
 		return 1;
 	}
-	else if( strncmp(c, "help", 4) ==0	){
+	else if( strncmp(c, "help", 4) ==0 && i == 4	){
 		print_str("\nCommand list:\n"
 			"	help\n"
 			"	\"backspace\"\n"
