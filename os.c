@@ -167,8 +167,9 @@ int find_cmd( char* cmd){
 		
 }
 void shell(){
-	char c[10] = {0}; 
+	char c[20] = {0}; 
 	int i = 0;
+	int x;
 	print_str("shell:~$ ");
 	while(1){
 		if(*(USART1_SR) & 0x0020){
@@ -185,8 +186,19 @@ void shell(){
 				}
 			}
 			else{
-				print_chr(c[i]);
-				i++;
+				if( c[i] == 0x8 || c[i] ==0x7f ){
+					c[i] = '\0';
+					c[i-1] = ' ';
+					for( x = 0; x<i; x++){
+						print_str("\b");
+					}
+					print_str(c);
+					print_str("\b");
+					i--;
+				}else{
+					print_chr(c[i]);
+					i++;
+				}
 			}
 		}
 	}
