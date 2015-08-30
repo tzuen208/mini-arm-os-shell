@@ -131,7 +131,7 @@ void findGCD(int a, int b) {
 
 /* 100 ms per tick. */
 #define TICK_RATE_HZ 10
-int find_cmd( char* cmd){
+int find_cmd( char* cmd, int i ){
 	char *delim = " ";
 	char *c;
 	char *para;
@@ -139,17 +139,17 @@ int find_cmd( char* cmd){
 	para = strtok(NULL, delim);
 	//print_str(c);
 	//print_str(para);
-	if( strncmp(c, "start", 5) == 0	){
+	if( strncmp(c, "start", 5) == 0 && i == 5	){
 		const char *str1 = "Task1";
 		thread_create(test1, (void *) str1);
 		return 1;
 	}
-	else if( strncmp(c, "task2", 5) == 0	){
+	else if( strncmp(c, "task2", 5) == 0&& i == 5	){
 		const char *str1 = "Task2";
 		thread_create(test2, (void *) str1);
 		return 1;
 	}
-	else if( strncmp(c, "gcd", 3) == 0	){
+	else if( strncmp(c, "gcd", 3) == 0&& i == 3	){
 		char *para2 = strtok(NULL, delim);
 		//print_str(para);
 		//print_str(para2);
@@ -158,12 +158,12 @@ int find_cmd( char* cmd){
 		thread_create_int2(findGCD, a, b);
 		return 1;
 	}
-	else if( strncmp(c, "fib", 3) == 0	){
+	else if( strncmp(c, "fib", 3) == 0&& i == 3	){
 		int *f = (int *)atoi(para);
 		thread_create_int(fib, f);
 		return 1;
 	}
-	else if( strncmp(c, "help", 4) ==0	){
+	else if( strncmp(c, "help", 4) ==0&& i == 4	){
 		print_str("\nCommand list:\n"
 			"	help\n"
 			"	\"backspace\"\n"
@@ -172,9 +172,12 @@ int find_cmd( char* cmd){
 			"KNOWN ISSUE: users have to press ENTER after the fib or gcd command, or the shell:~$ wont print out"
 			);
 	}
-	
-	return 0;
+	else{
+		print_str("\ncommand not found");
+		return 0;
+	}
 		
+		return 0;
 }
 void shell(){
 	char c[20] = {0}; 
@@ -186,15 +189,15 @@ void shell(){
 		if(*(USART1_SR) & 0x0020){
 			c[i] = *(USART1_DR) & 0x0FF;
 			if( c[i] == 0x0d){
-				i = 0;
 		//		print_chr('\n');
 		//		print_str(c);
-				if(find_cmd(c))
+				if(find_cmd(c, i))
 					print_chr('\n');
 		//		break;
 				else{
 					print_str("\nshell:~$ ");
 				}
+				i = 0;
 			}
 			else if( c[i] == 0x8 || c[i] ==0x7f ){
 				if( i != 0){
