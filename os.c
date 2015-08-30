@@ -163,6 +163,16 @@ int find_cmd( char* cmd){
 		thread_create_int(fib, f);
 		return 1;
 	}
+	else if( strncmp(c, "help", 4) ==0	){
+		print_str("\nCommand list:\n"
+			"	help\n"
+			"	\"backspace\"\n"
+			"	fib %d     -an integer with a space after fib\n"
+			"	gcd %d %d  -two integer each seperate with a space\n"
+			"KNOWN ISSUE: users have to press ENTER after the fib or gcd command, or the shell:~$ wont print out"
+			);
+	}
+	
 	return 0;
 		
 }
@@ -170,6 +180,7 @@ void shell(){
 	char c[20] = {0}; 
 	int i = 0;
 	int x;
+	print_str("type help for command list\n");
 	print_str("shell:~$ ");
 	while(1){
 		if(*(USART1_SR) & 0x0020){
@@ -185,8 +196,8 @@ void shell(){
 					print_str("\nshell:~$ ");
 				}
 			}
-			else{
-				if( c[i] == 0x8 || c[i] ==0x7f ){
+			else if( c[i] == 0x8 || c[i] ==0x7f ){
+				if( i != 0){
 					c[i] = '\0';
 					c[i-1] = ' ';
 					for( x = 0; x<i; x++){
@@ -195,11 +206,13 @@ void shell(){
 					print_str(c);
 					print_str("\b");
 					i--;
-				}else{
-					print_chr(c[i]);
-					i++;
 				}
 			}
+			else{
+				print_chr(c[i]);
+				i++;
+			}
+
 		}
 	}
 }
