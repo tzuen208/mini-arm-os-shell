@@ -172,10 +172,6 @@ int find_cmd( char* cmd, int i ){
 			"KNOWN ISSUE: users have to press ENTER after the fib or gcd command, or the shell:~$ wont print out"
 			);
 	}
-	else{
-		print_str("\ncommand not found");
-		return 0;
-	}
 		
 		return 0;
 }
