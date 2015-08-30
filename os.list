@@ -647,7 +647,7 @@ int find_cmd( char* cmd, int i ){
  800049a:	f6c0 0000 	movt	r0, #2048	; 0x800
  800049e:	f7ff fe49 	bl	8000134 <print_str>
 	else{
-		print_str("\ncommand not find");
+		print_str("\ncommand not found");
 		return 0;
 	}
 		
@@ -659,7 +659,7 @@ int find_cmd( char* cmd, int i ){
 			);
 	}
 	else{
-		print_str("\ncommand not find");
+		print_str("\ncommand not found");
  80004a6:	f241 30e4 	movw	r0, #5092	; 0x13e4
  80004aa:	f6c0 0000 	movt	r0, #2048	; 0x800
  80004ae:	f7ff fe41 	bl	8000134 <print_str>
@@ -2724,8 +2724,8 @@ void thread_self_terminal()
  80013e4:	6d6f630a 	.word	0x6d6f630a
  80013e8:	646e616d 	.word	0x646e616d
  80013ec:	746f6e20 	.word	0x746f6e20
- 80013f0:	6e696620 	.word	0x6e696620
- 80013f4:	00000064 	.word	0x00000064
+ 80013f0:	756f6620 	.word	0x756f6620
+ 80013f4:	0000646e 	.word	0x0000646e
  80013f8:	65707974 	.word	0x65707974
  80013fc:	6c656820 	.word	0x6c656820
  8001400:	6f662070 	.word	0x6f662070

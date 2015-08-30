@@ -158,12 +158,12 @@ int find_cmd( char* cmd, int i ){
 		thread_create_int2(findGCD, a, b);
 		return 1;
 	}
-	else if( strncmp(c, "fib", 3) == 0&& i == 3	){
+	else if( strncmp(c, "fib", 3) == 0	){
 		int *f = (int *)atoi(para);
 		thread_create_int(fib, f);
 		return 1;
 	}
-	else if( strncmp(c, "help", 4) ==0&& i == 4	){
+	else if( strncmp(c, "help", 4) ==0	){
 		print_str("\nCommand list:\n"
 			"	help\n"
 			"	\"backspace\"\n"
