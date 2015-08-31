@@ -198,10 +198,6 @@ void shell(){
 			else if( c[i] == 0x8 || c[i] ==0x7f ){
 				if( i != 0){
 					c[i] = '\0';
-				//	c[i-1] = ' ';
-			//		for( x = 0; x<i; x++){
-			//			print_str("\b");
-			//		}
 					print_str("\b");
 					print_chr(' ');
 					print_str("\b");
