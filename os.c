@@ -178,7 +178,7 @@ int find_cmd( char* cmd, int i ){
 void shell(){
 	char c[20] = {0}; 
 	int i = 0;
-	int x;
+//	int x;
 	print_str("type help for command list\n");
 	print_str("shell:~$ ");
 	while(1){
@@ -198,13 +198,16 @@ void shell(){
 			else if( c[i] == 0x8 || c[i] ==0x7f ){
 				if( i != 0){
 					c[i] = '\0';
-					c[i-1] = ' ';
-					for( x = 0; x<i; x++){
-						print_str("\b");
-					}
-					print_str(c);
+				//	c[i-1] = ' ';
+			//		for( x = 0; x<i; x++){
+			//			print_str("\b");
+			//		}
+					print_str("\b");
+					print_chr(' ');
 					print_str("\b");
 					i--;
+				
+					c[i] = '\0';
 				}
 			}
 			else{
